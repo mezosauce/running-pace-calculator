@@ -1,0 +1,58 @@
+﻿@inherits LayoutComponentBase
+@using running_pace_calculator.Theme;
+
+<MudThemeProvider Theme="myTheme" @bind-IsDarkMode="_isDarkMode" />
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<MudLayout>
+    <MudAppBar Color="Color.Primary">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudText>chris.tat.dev</MudText>
+        <MudSpacer />
+        <MudIconButton Icon="@(_isDarkMode ? Icons.Material.Outlined.DarkMode : Icons.Material.Outlined.LightMode)" 
+                       OnClick="OnLightDarkModeButtonClick" 
+                       Color="Color.Inherit"/>
+    </MudAppBar>
+    <MudDrawer @bind-Open="@_drawerOpen" ClipMode="DrawerClipMode.Always">
+        <NavMenu/>
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Medium">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private MudTheme myTheme = new WebsiteTheme();
+    private string LightDarkModeIcon = Icons.Material.Filled.LightMode;
+    private bool _isDarkMode = true;
+
+
+    protected override void OnInitialized()
+    {
+        StateHasChanged();
+    }
+
+    bool _drawerOpen = false;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    void OnLightDarkModeButtonClick()
+    {
+        if (LightDarkModeIcon == Icons.Material.Filled.LightMode)
+        {
+            LightDarkModeIcon = Icons.Material.Filled.DarkMode;
+        }
+        else
+        {
+            LightDarkModeIcon = Icons.Material.Filled.LightMode;
+        }
+
+        _isDarkMode = !_isDarkMode;
+    }
+}
