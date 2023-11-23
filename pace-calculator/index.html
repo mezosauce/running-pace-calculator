@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Running Pace Calculator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="container">
+        <div class="calculator"> 
+            <form>
+            <div class="display">
+            <input type="text" name="display">
+            </div>
+            <div class="receive">
+                <label for="distance">Distance:</label>
+                <input type="number" name="distance" id="distance">
+                <label for="time">Time:</label>
+                <input type="number" name="time" id="time">
+                <br>
+                <input type="button" class ="b" onclick="display.value = distance.value/time.value" value="Calculate" >
+            </div>
+        </form>
+        </div>
+    </div>
 </body>
 </html>
